@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+let xmlString=`<data>
+             <firstName>John</firstName>
+             <lastName>Doe</lastName>
+             <birth>30</birth>
+             <adress>
+                <country>America</country>
+                <city>New-York</city>
+                <street>5Aveneu</street>
+                </adress>
+                <contacts>
+                    <phones>0,4,5,3,4,3,4</phones> 
+                    <socials>
+                        <facebook>вавава</facebook>
+                        <viber>вавапп</viber>
+                     </socials>
+                    </contacts>
+                         </data>`
+let jsonString = `{
+    "data":{
+        "firstName":"John","laststName":"Doe","birth":30,"adress":{
+                                   country:"America","city":"New-York",street:"5Aveneu"
+                                },"contacts":{
+                                               "phones":["0,4,5,3,4,3,4"]
+                                            },"socials":{
+                                                "facebook":"вавава","viber":"вавапп"
+                                            }
+                                        }
+                                    }`
+
+  let xmlParser=new DOMParser()
+let xmlDoc=xmlParser.parseFromString(xmlString, 'text/xml')
+console.log(xmlDoc.children[0].children[0].textContent,xmlDoc.children[0].children[1].textContent,xmlDoc.children[0].children[3].children[2].textContent)
+console.log(new XMLSerializer().serializeToString(xmlDoc))
+
+let jsonData  = JSON.parse(jsonString);
+console.log(jsonData.data.firstname,jsonData.data.firstname)
+console.log(JSON.stringify(jsonData))
+    </script>
+</body>
+</html>
