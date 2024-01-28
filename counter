@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+</head>
+<body>
+    <h1 id="title"></h1>
+    <script>
+        function load(){
+            let views=localStorage.getItem("views")
+            let title=document.getElementById("title")
+
+            if(views == null){
+                views = 0
+                title.innerHTML="Hi,good to see you for the first time!"
+            } else if(views<=10){
+                title.innerHTML="Hi,welcome back!"
+            }
+            views++
+            localStorage.setItem("views", views)
+        }
+        document.body.onload=load
+    </script>
+</body>
+</html>
