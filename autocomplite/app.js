@@ -6,38 +6,38 @@ const saveFormData=(e)=>{
                .filter(input=>input.type != 'password')
                .reduce((acc,input)=>{acc[input.id]=input.value 
                   return acc},{})
-   
+      
               let jsonData=JSON.stringify(data)
        
-// store the data  
-localStorage.setItem(`formDta-${data.name}`, jsonData)     
-}
+             // store the data  
+             
+              localStorage.setItem(`formDta-${data.name.toUpperCase()}`, jsonData) 
+
+                     }
 
 const loadFromData=(e)=>{
       let input =e.target
-      input.value = input.value.toUpperCase();
+      
       let name=input.value
-
+      // input.value = input.value.toUpperCase();
+  
       let foundKey=Object.keys(localStorage).find(
-                      key=>key.startsWith("formData-") && key.endsWith(name)
+      key=>key.startsWith("formData-") && key.endsWith(name)
        )
-       
-if (foundKey && name.length > 0) {
-    let data = JSON.parse(localStorage.getItem(foundKey))
-    
-Object.keys(data).forEach(key=>{
-                   let value = data[key]
-                  document.querySelector(`#${key}`).value = value
-                })
-    
-  }
- else{
-
-  let inputs = form.querySelectorAll('input')
-   inputs.forEach((input) => {
-      input.value = ""
-   })  
- }
+ 
+      if (foundKey && name.length > 0) {
+          let data = JSON.parse(localStorage.getItem(foundKey))
+          Object.keys(data).forEach(key=>{
+          let value = data[key]
+          document.querySelector(`#${key}`).value = value
+   })
+   }
+//       else if(input.value != value){
+//           let inputsAll = document.forms[0].querySelectorAll('input')
+//           inputsAll.forEach((input) => {
+//           input.value = ""
+//    })  
+//  }
 
 }
 
