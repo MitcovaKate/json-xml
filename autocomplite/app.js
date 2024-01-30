@@ -4,23 +4,26 @@ const saveFormData=(e)=>{
     let inputs=[...form.querySelectorAll('input')]
     let data=inputs
                .filter(input=>input.type != 'password')
-               .reduce((acc,input)=>{acc[input.id]=input.value 
+               .reduce((acc,input)=>{acc[input.id]=input.value.toLowerCase() 
                   return acc},{})
-      
+                 
               let jsonData=JSON.stringify(data)
        
              // store the data  
-             
-              localStorage.setItem(`formDta-${data.name.toUpperCase()}`, jsonData) 
+            
+              localStorage.setItem(`formData-${data.name}`, jsonData) 
 
+            //   clear the inputs value
+inputs.forEach((input) => {
+          input.value = ""
+   })  
                      }
 
 const loadFromData=(e)=>{
       let input =e.target
-      
+      input.value = input.value.toLowerCase();
       let name=input.value
-      // input.value = input.value.toUpperCase();
-  
+    
       let foundKey=Object.keys(localStorage).find(
       key=>key.startsWith("formData-") && key.endsWith(name)
        )
@@ -32,14 +35,10 @@ const loadFromData=(e)=>{
           document.querySelector(`#${key}`).value = value
    })
    }
-//       else if(input.value != value){
-//           let inputsAll = document.forms[0].querySelectorAll('input')
-//           inputsAll.forEach((input) => {
-//           input.value = ""
-//    })  
-//  }
+    
+  }
 
-}
+
 
 
 document.forms[0].addEventListener('submit',saveFormData)
