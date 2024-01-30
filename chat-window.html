@@ -56,9 +56,9 @@
     function saveChatState(state){
         localStorage.setItem("chat_state",state)
     }
-    function restoreState(){
-        let state=JSON.parse(localStorage.getItem("chat_state"))
-        if(state!=null){
+   function restoreState(){
+        let state=localStorage.getItem("chat_state")
+        if(state!='null'){
            let div  = document.querySelector('#chat')
            div.classList.add("open")
                     }
