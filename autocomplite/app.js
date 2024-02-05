@@ -4,14 +4,14 @@ const saveFormData=(e)=>{
     let inputs=[...form.querySelectorAll('input')]
     let data=inputs
                .filter(input=>input.type != 'password')
-               .reduce((acc,input)=>{acc[input.id]=input.value.toLowerCase() 
+               .reduce((acc,input)=>{acc[input.id]=input.value
                   return acc},{})
                  
               let jsonData=JSON.stringify(data)
        
              // store the data  
             
-              localStorage.setItem(`formData-${data.name}`, jsonData) 
+              localStorage.setItem(`formData-${data.name.toLowerCase() }`, jsonData) 
 
             //   clear the inputs value
 inputs.forEach((input) => {
